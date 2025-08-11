@@ -59,7 +59,7 @@ const Header = () => {
         </p>
       )}
 
-      <div className="w-11/12 mx-auto py-4 flex justify-between items-center relative">
+      <div className="w-11/12 mx-auto py-3 flex justify-between items-center relative">
         {/* Logo */}
         <Link
           to="/"
