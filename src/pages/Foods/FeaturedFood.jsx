@@ -99,7 +99,13 @@ const FeaturedFoods = () => {
   }, []);
 
   return (
-    <section className="w-full mx-auto py-12 bg-gray-50">
+    <section
+      className="w-full mx-auto py-12 bg-gray-50"
+      style={{
+        background:
+          "linear-gradient(135deg, #f0fdf4 0%, #fef3c7 50%, #ffffff 100%)",
+      }}
+    >
       <h2 className="text-3xl font-bold text-center mb-8 text-green-600">
         Featured Foods <span className="text-orange-500">(Top Quantity)</span>
       </h2>

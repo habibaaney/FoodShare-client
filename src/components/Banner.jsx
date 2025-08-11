@@ -12,7 +12,13 @@ const Banner = () => {
   }, []);
 
   return (
-    <section className="bg-gray-50 overflow-hidden">
+    <section
+      className="bg-gray-50 overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(135deg, #f0fdf4 0%, #fef3c7 50%, #ffffff 100%)",
+      }}
+    >
       <div
         className={`flex min-h-screen flex-col-reverse md:flex-row items-center justify-between gap-10 w-11/12 mx-auto py-12 transition-all duration-1000 ease-out ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
