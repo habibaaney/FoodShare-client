@@ -13,7 +13,7 @@ const Banner = () => {
 
   return (
     <section
-      className="bg-gray-50 overflow-hidden"
+      className="overflow-hidden"
       style={{
         background:
           "linear-gradient(135deg, #f0fdf4 0%, #fef3c7 50%, #ffffff 100%)",
@@ -26,7 +26,7 @@ const Banner = () => {
       >
         {/* Text Content */}
         <div className="space-y-6 text-center md:text-left max-w-xl">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+          <h1 className="text-4xl text-green-600 md:text-5xl font-bold leading-tight">
             Share <span className="text-orange-500">Surplus Food</span> with
             Your Community
           </h1>

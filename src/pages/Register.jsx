@@ -42,71 +42,79 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-[url(/bg.png)] bg-contain">
-      <div className="bg-white bg-opacity-90 min-h-screen">
-        <div className="w-11/12 mx-auto py-10 m-5 p-5">
-          <div className="title mt-5">
+    <div className="bg-[url(/bg.png)] bg-contain min-h-screen flex items-center">
+      <div className="bg-white bg-opacity-90 w-full max-w-6xl mx-auto p-8 rounded-xl shadow-lg">
+        <div className="w-11/12 mx-auto">
+          <div className="title mb-10 text-center">
             <Title>Join with Us</Title>
           </div>
 
-          <div className="flex justify-between items-center gap-5 pt-8 flex-wrap-reverse">
-            <div className="login-for flex-1">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            {/* Form + Social Container */}
+            <div className="flex-1 max-w-md w-full">
               <form
                 onSubmit={handleSubmit}
-                className="bg-white p-5 flex flex-col gap-8 backdrop-blur-sm bg-opacity-10 shadow-lg rounded-lg"
+                className="bg-white p-8 backdrop-blur-sm bg-opacity-10 shadow-lg rounded-lg space-y-6"
               >
-                <div className="flex justify-start items-center">
+                <div className="flex items-center gap-4 border-b-2 border-gray-300 focus-within:border-orange-400 transition duration-200">
                   <BiUser className="text-3xl text-slate-500" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-orange-400 transition-all duration-200"
+                    className="outline-none flex-1 p-2 bg-transparent placeholder-gray-400"
                     type="text"
                     name="name"
                     placeholder="Enter Full Name"
+                    required
                   />
                 </div>
 
-                <div className="flex justify-start items-center">
+                <div className="flex items-center gap-4 border-b-2 border-gray-300 focus-within:border-orange-400 transition duration-200">
                   <BiImageAdd className="text-3xl text-slate-500" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-orange-400 transition-all duration-200"
+                    className="outline-none flex-1 p-2 bg-transparent placeholder-gray-400"
                     type="text"
                     name="image"
                     placeholder="Enter Image URL"
                   />
                 </div>
 
-                <div className="flex justify-start items-center">
+                <div className="flex items-center gap-4 border-b-2 border-gray-300 focus-within:border-orange-400 transition duration-200">
                   <BiEnvelope className="text-3xl text-slate-500" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-orange-400 transition-all duration-200"
+                    className="outline-none flex-1 p-2 bg-transparent placeholder-gray-400"
                     type="email"
                     name="email"
                     placeholder="Enter Email"
+                    required
                   />
                 </div>
 
-                <div className="flex justify-start items-center">
+                <div className="flex items-center gap-4 border-b-2 border-gray-300 focus-within:border-orange-400 transition duration-200">
                   <BiKey className="text-3xl text-slate-500" />
                   <input
-                    className="outline-none flex-1 border-b-2 p-2 bg-transparent focus:border-orange-400 transition-all duration-200"
+                    className="outline-none flex-1 p-2 bg-transparent placeholder-gray-400"
                     type="password"
                     name="pass"
                     placeholder="Enter Password"
+                    required
                   />
                 </div>
 
                 <input
                   type="submit"
                   value="Register Now"
-                  className="btn cursor-pointer"
+                  className="btn bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition cursor-pointer"
                 />
               </form>
+
+              {/* Social button below form */}
+              <div className="mt-6">
+                <Social />
+              </div>
             </div>
 
-            <Social />
-
-            <div className="lottie flex-1 flex mx-20">
-              <Lottie animationData={happy} />
+            {/* Lottie animation */}
+            <div className="flex-1 max-w-lg w-full hidden md:flex justify-center">
+              <Lottie animationData={happy} className="w-full max-w-md" />
             </div>
           </div>
         </div>
