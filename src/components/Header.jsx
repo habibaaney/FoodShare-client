@@ -36,7 +36,7 @@ const Header = () => {
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
     { name: "Contact Us", path: "/contact" },
-    { name: "Privacy Policy", path: "/privacy" },
+    // { name: "Privacy Policy", path: "/privacy" },
   ];
 
   const privateLinks = [
@@ -44,6 +44,7 @@ const Header = () => {
     { name: "Manage My Foods", path: "/manage-my-foods" },
     { name: "My Food Requests", path: "/my-food-requests" },
     { name: "Available Foods", path: "/available-foods" },
+    { name: "Blogs", path: "/blogs" },
   ];
 
   const renderNavLinks = () =>

@@ -13,6 +13,7 @@ import MyFoodRequests from "../pages/Request/MyFoodRequests";
 import ContactUs from "../components/ContactUs";
 import PrivacyPolicy from "../components/PrivacyPolicy";
 import AboutUs from "../components/AboutUs";
+import Blogs from "../pages/Blogs/Blogs";
 const mainRoutes = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +44,8 @@ const mainRoutes = createBrowserRouter([
         path: "privacy",
         element: <PrivacyPolicy></PrivacyPolicy>,
       },
+
+      // Private routes added here
       {
         path: "available-foods",
         element: (
@@ -51,7 +54,7 @@ const mainRoutes = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      // Private routes re added here
+
       {
         path: "food/:id",
         element: (
@@ -83,6 +86,10 @@ const mainRoutes = createBrowserRouter([
             <MyFoodRequests />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "blogs",
+        element: <Blogs />,
       },
     ],
   },

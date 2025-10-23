@@ -1,151 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import { Link } from "react-router";
-// import { motion } from "framer-motion";
-// import { useAuth } from "../../providers/AuthProvider";
-
-// const AvailableFood = () => {
-//   const [foods, setFoods] = useState([]);
-//   const [filteredFoods, setFilteredFoods] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [sortOrder, setSortOrder] = useState("asc");
-//   const [gridCols, setGridCols] = useState(3);
-//   const [searchTerm, setSearchTerm] = useState("");
-//   const { user } = useAuth();
-//   console.log("User:", user);
-//   useEffect(() => {
-//     axios
-//       .get("https://mission-scic11-server.vercel.app/available-foods", {
-//         headers: {
-//           Authorization: `Bearer ${user?.accessToken}`,
-//         },
-//       })
-
-//       .then((res) => {
-//         console.log("Available Foods:", res.data);
-//         const available = res.data.filter(
-//           (food) => food.status === "available"
-//         );
-//         setFoods(available);
-//         setFilteredFoods(available);
-//         setLoading(false);
-//       })
-//       .catch((err) => {
-//         console.error("Error fetching available foods:", err);
-//         setLoading(false);
-//       });
-//   }, []);
-
-//   // Sorting logic
-//   useEffect(() => {
-//     const sorted = [...filteredFoods].sort((a, b) => {
-//       const dateA = new Date(a.expiredAt);
-//       const dateB = new Date(b.expiredAt);
-//       return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
-//     });
-//     setFilteredFoods(sorted);
-//   }, [sortOrder]);
-
-//   // Search logic
-//   useEffect(() => {
-//     const results = foods.filter((food) =>
-//       food.name.toLowerCase().includes(searchTerm.toLowerCase())
-//     );
-//     setFilteredFoods(results);
-//   }, [searchTerm, foods]);
-
-//   const handleSortChange = (e) => setSortOrder(e.target.value);
-//   const toggleGrid = () => setGridCols((prev) => (prev === 3 ? 2 : 3));
-
-//   return (
-//     <section className="w-11/12 mx-auto py-10">
-//       <h2 className="text-3xl font-bold text-center mb-6 text-green-700">
-//         Available Foods
-//       </h2>
-
-//       <div className="flex flex-col md:flex-row justify-between gap-4 mb-6">
-//         <input
-//           type="text"
-//           placeholder="Search by Food Name"
-//           className="input input-bordered w-full md:max-w-xs"
-//           value={searchTerm}
-//           onChange={(e) => setSearchTerm(e.target.value)}
-//         />
-
-//         <div className="flex items-center space-x-2">
-//           <label className="text-sm font-medium">Sort by Expiry:</label>
-//           <select
-//             value={sortOrder}
-//             onChange={handleSortChange}
-//             className="select select-sm select-bordered"
-//           >
-//             <option value="asc">Earliest First</option>
-//             <option value="desc">Latest First</option>
-//           </select>
-
-//           <button onClick={toggleGrid} className="btn btn-sm btn-outline">
-//             Change Layout ({gridCols === 3 ? "2 Columns" : "3 Columns"})
-//           </button>
-//         </div>
-//       </div>
-
-//       {/* 🌀 Loading or Empty */}
-//       {loading ? (
-//         <p className="text-center text-gray-500 text-lg animate-pulse">
-//           Loading foods...
-//         </p>
-//       ) : filteredFoods.length === 0 ? (
-//         <p className="text-center text-gray-500 text-lg">No foods found.</p>
-//       ) : (
-//         <div
-//           className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${gridCols} gap-6`}
-//         >
-//           {filteredFoods.map((food) => (
-//             <motion.div
-//               key={food._id}
-//               className="card shadow-md rounded-lg bg-white overflow-hidden border"
-//               whileHover={{ scale: 1.03 }}
-//               transition={{ duration: 0.3 }}
-//             >
-//               <img
-//                 src={food.image}
-//                 alt={food.name}
-//                 className="w-full h-48 object-cover"
-//               />
-//               <div className="p-4">
-//                 <h3 className="text-xl font-semibold mb-1">{food.name}</h3>
-//                 <p className="text-slate-600 text-sm">
-//                   Quantity: {food.quantity}
-//                 </p>
-//                 <p className="text-slate-600 text-sm">
-//                   Location: {food.location}
-//                 </p>
-//                 <p className="text-slate-600 text-sm">
-//                   Expire At: {new Date(food.expiredAt).toLocaleString("en-GB")}
-//                 </p>
-//                 <p className="text-slate-600 text-sm mb-2">
-//                   Donor: {food.addedBy?.name || "Unknown"}
-//                 </p>
-
-//                 <div className="flex justify-between items-center mt-4">
-//                   <Link
-//                     to={`/food/${food._id}`}
-//                     className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm"
-//                   >
-//                     View Details
-//                   </Link>
-//                 </div>
-//               </div>
-//             </motion.div>
-//           ))}
-//         </div>
-//       )}
-//     </section>
-//   );
-// };
-
-// export default AvailableFood;
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router";
@@ -266,15 +118,15 @@ const AvailableFood = () => {
                 <p className="text-gray-600 text-sm mb-1">
                   Quantity: {food.quantity}
                 </p>
-                {/* <p className="text-gray-600 text-sm mb-1">
+                <p className="text-gray-600 text-sm mb-1">
                   Location: {food.location}
                 </p>
                 <p className="text-gray-600 text-sm mb-1">
-                  Expire At: {new Date(food.expiredAt).toLocaleString("en-GB")}
+                  Expire At: {new Date(food.expireDate).toLocaleString()}
                 </p>
                 <p className="text-gray-600 text-sm mb-3">
                   Donor: {food.addedBy?.name || "Unknown"}
-                </p> */}
+                </p>
 
                 <Link
                   to={`/food/${food._id}`}
