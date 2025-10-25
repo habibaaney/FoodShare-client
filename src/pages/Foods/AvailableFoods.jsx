@@ -53,7 +53,7 @@ const AvailableFood = () => {
   }, [searchTerm, foods]);
 
   const handleSortChange = (e) => setSortOrder(e.target.value);
-  const toggleGrid = () => setGridCols((prev) => (prev === 3 ? 2 : 3));
+  const toggleGrid = () => setGridCols((prev) => (prev === 4 ? 2 : 4));
 
   return (
     <section className="w-11/12 mx-auto py-10">
@@ -83,7 +83,7 @@ const AvailableFood = () => {
           </select>
 
           <button onClick={toggleGrid} className="btn btn-sm btn-outline">
-            Change Layout ({gridCols === 3 ? "2 Columns" : "3 Columns"})
+            Change Layout ({gridCols === 4 ? "2 Columns" : "4 Columns"})
           </button>
         </div>
       </div>
