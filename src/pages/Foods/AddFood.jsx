@@ -102,10 +102,13 @@ const AddFood = () => {
         <input
           value="available"
           disabled
-          className="input input-bordered w-full"
+          className="input input-bordered text-gray-600 w-full"
         />
 
-        <button type="submit" className="btn btn-primary w-full">
+        <button
+          type="submit"
+          className="btn text-white bg-green-600 hover:bg-green-700 w-full"
+        >
           Add Food
         </button>
       </form>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 import { useAuth } from "../../providers/AuthProvider";
 
 const MyFoodRequests = () => {
@@ -24,6 +25,34 @@ const MyFoodRequests = () => {
       });
   }, [user]);
 
+  // ✅ Handle delete request
+  const handleDelete = async (id) => {
+    const confirm = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won’t be able to recover this request!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (confirm.isConfirmed) {
+      try {
+        const res = await axios.delete(
+          `https://mission-scic11-server.vercel.app/food-requests/${id}`
+        );
+        if (res.data.deletedCount > 0) {
+          Swal.fire("Deleted!", "Your request has been deleted.", "success");
+          setRequests((prev) => prev.filter((req) => req._id !== id));
+        }
+      } catch (error) {
+        console.error("Error deleting request:", error);
+        Swal.fire("Error!", "Failed to delete request.", "error");
+      }
+    }
+  };
+
   if (loading) return <p className="text-center mt-10">Loading...</p>;
   if (requests.length === 0)
     return (
@@ -31,19 +60,20 @@ const MyFoodRequests = () => {
     );
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-6 w-full mx-auto">
       <h2 className="text-3xl font-bold mb-6">My Food Requests</h2>
       <div className="overflow-x-auto">
         <table className="table w-full border">
           <thead className="bg-gray-100">
             <tr>
               <th>Food</th>
-              <th>Donor Name</th>
+              {/* <th>Donor Name</th> */}
               <th>Pickup Location</th>
               <th>Expire Date</th>
               <th>Request Date</th>
               <th>Status</th>
               <th>Notes</th>
+              <th>Action</th> {/* ✅ New Column */}
             </tr>
           </thead>
           <tbody>
@@ -61,12 +91,21 @@ const MyFoodRequests = () => {
                     </div>
                   </div>
                 </td>
-                <td>{req.donorName || "N/A"}</td>
+                {/* <td>{req.displayName || "N/A"}</td> */}
                 <td>{req.pickupLocation}</td>
                 <td>{req.expireDate ? formatDate(req.expireDate) : "N/A"}</td>
                 <td>{req.requestDate ? formatDate(req.requestDate) : "N/A"}</td>
                 <td>{req.status || "requested"}</td>
-                <td>{req.additionalNotes || "-"}</td>
+                <td>{req.notes || "-"}</td>
+                {/* ✅ Delete Button */}
+                <td>
+                  <button
+                    onClick={() => handleDelete(req._id)}
+                    className="btn btn-error btn-sm text-white"
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -79,7 +118,7 @@ const MyFoodRequests = () => {
 // Helper function to format ISO date strings
 function formatDate(isoDate) {
   const d = new Date(isoDate);
-  return d.toLocaleString(); // You can also use toLocaleDateString()
+  return d.toLocaleString();
 }
 
 export default MyFoodRequests;
