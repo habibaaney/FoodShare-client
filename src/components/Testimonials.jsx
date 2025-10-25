@@ -23,7 +23,7 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <section
-      className="min-h-screen flex flex-col justify-center py-16 px-4"
+      className="min-h-screen flex flex-col justify-center py-5 "
       style={{
         background: "linear-gradient(to right, #e8f5e9, #fff3e0)", // light green to light orange
       }}

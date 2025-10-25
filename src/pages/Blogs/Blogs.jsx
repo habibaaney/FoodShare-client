@@ -144,13 +144,13 @@ const Blogs = () => {
                   Read More
                 </button>
                 <button
-                  className="btn btn-sm btn-warning"
+                  className="btn btn-sm bg-green-600 text-white hover:bg-green-700"
                   onClick={() => setEditBlog(blog)}
                 >
                   Edit
                 </button>
                 <button
-                  className="btn btn-sm btn-error"
+                  className="btn btn-sm bg-red-600 text-white hover:bg-red-700"
                   onClick={() => deleteBlogMutation.mutate(blog._id)}
                 >
                   Delete
@@ -166,7 +166,11 @@ const Blogs = () => {
         <dialog open className="modal modal-bottom sm:modal-middle">
           <div className="modal-box">
             <h3 className="font-bold text-2xl mb-2">{selectedBlog.title}</h3>
-            <p className="text-sm text-gray-500 mb-4">
+            <p
+              className="text-sm text-gray-8
+            
+            00 mb-4"
+            >
               By {selectedBlog.author} •{" "}
               {new Date(selectedBlog.createdAt).toLocaleDateString()}
             </p>
@@ -175,7 +179,7 @@ const Blogs = () => {
               alt={selectedBlog.title}
               className="rounded-lg mb-4"
             />
-            <p className="text-gray-700">{selectedBlog.content}</p>
+            <p className="text-gray-800">{selectedBlog.content}</p>
             <div className="modal-action">
               <button className="btn" onClick={() => setSelectedBlog(null)}>
                 Close

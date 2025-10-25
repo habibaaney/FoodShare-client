@@ -23,7 +23,7 @@ const steps = [
 const HowItWorks = () => {
   return (
     <section
-      className="py-16"
+      className="py-5"
       style={{
         background: "linear-gradient(to right, #e8f5e9, #fff3e0)",
       }}
